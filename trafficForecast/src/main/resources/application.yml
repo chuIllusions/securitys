@@ -1,0 +1,41 @@
+#配置根路径
+server:
+  port: 80
+
+#配置session的缓存类型
+spring:
+#使用了session管理
+  session:
+    store-type: none
+    timeout: 600
+#数据源配置
+  datasource:
+    driverClassName : com.mysql.jdbc.Driver
+    url : jdbc:mysql://192.168.1.89:3306/learning?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+    username : root
+    password : root
+
+#配置turing自定义配置turing.security对应核心项目中的com.turingdi.core.properties.SecurityProperties,覆盖默认的配置参数
+
+turing:
+  security:
+#配置浏览器相关属性
+    browser:
+      session:
+        maxSessionsPreventsLogin: true
+#配置验证码相关属性
+    code:
+      image:
+        length: 6
+        url: /user/image/code,/other/send/,/images/*
+#配置社交登录相关属性
+    social:
+      qq:
+        app-id: 101386962
+        app-secret: 2a0f820407df400b84a854d054be8b6a
+#配置oauth相关属性
+    oauth2:
+      clients[0]:
+        clientId: turing
+        clientSecret: turing
+        accessTokenValidateSeconds: 720000
