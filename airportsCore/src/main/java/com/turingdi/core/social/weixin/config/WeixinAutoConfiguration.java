@@ -5,7 +5,8 @@ package com.turingdi.core.social.weixin.config;
 
 import com.turingdi.core.properties.SecurityProperties;
 import com.turingdi.core.properties.social.weixin.WeixinProperties;
-import com.turingdi.core.social.view.AbstractConnectView;
+import com.turingdi.core.social.support.DefaultBindingProcessor;
+import com.turingdi.core.social.view.AbstractConnectBindingView;
 import com.turingdi.core.social.weixin.connect.WeixinConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -52,8 +53,8 @@ public class WeixinAutoConfiguration extends SocialAutoConfigurerAdapter {
 	}
 
 	@Bean({"connect/weixinConnect", "connect/weixinConnected"})
-	@ConditionalOnMissingBean(name = "weixinConnectedView")
-	public View weixinConnectedView() {
-		return new AbstractConnectView();
+	@ConditionalOnMissingBean(name = "weixinBindingView")
+	public View weixinBindingView() {
+		return new AbstractConnectBindingView(new DefaultBindingProcessor());
 	}
 }

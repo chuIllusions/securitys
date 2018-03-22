@@ -28,8 +28,12 @@ public class AbstractExpiredSessionStrategy extends AbstractSessionStrategy impl
 	public void onExpiredSessionDetected(SessionInformationExpiredEvent event) throws IOException, ServletException {
 		onSessionInvalid(event.getRequest(), event.getResponse());
 	}
-	
 
+
+	/**
+	 * 覆盖父类,证明其是并发登录的
+	 * @return
+	 */
 	@Override
 	protected boolean isConcurrency() {
 		return true;
