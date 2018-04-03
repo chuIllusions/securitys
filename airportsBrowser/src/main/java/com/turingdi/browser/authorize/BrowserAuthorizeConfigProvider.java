@@ -27,7 +27,9 @@ public class BrowserAuthorizeConfigProvider implements AuthorizeConfigProvider {
 			"/**/*.css",
 			"/**/*.jpg",
 			"/**/*.png",
-			"/**/*.gif").permitAll();
+			"/**/*.gif","/thymeleaf/home").permitAll();
+		config.antMatchers("/thymeleaf/admins").hasAnyRole("ADMIN")
+				.antMatchers("/thymeleaf/users").hasAnyRole("USER");
 		return false;
 	}
 

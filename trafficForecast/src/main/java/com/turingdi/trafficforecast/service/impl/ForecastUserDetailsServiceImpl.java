@@ -35,15 +35,15 @@ public class ForecastUserDetailsServiceImpl implements UserDetailsService,Social
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //spring security框架提供的一个实现了UserDetails接口的实现类
         //dao查询username信息
-        SystemUser user = userMapper.findSystemUserByUsername(username);
-        if (user == null){
-            //AbstractUserDetailsAuthenticationProvider把UsernameNotFoundException包装其他异常，因为AbstractUserDetailsAuthenticationProvider.hideUserNotFoundExceptions=true
-            throw new UsernameNotFoundException("无法找到用户名为:" + username + "的用户");
-        }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //SystemUser user = userMapper.findSystemUserByUsername(username);
+//        if (user == null){
+//            //AbstractUserDetailsAuthenticationProvider把UsernameNotFoundException包装其他异常，因为AbstractUserDetailsAuthenticationProvider.hideUserNotFoundExceptions=true
+//            throw new UsernameNotFoundException("无法找到用户名为:" + username + "的用户");
+//        }
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
         //三个参数:username,password,authorities：授权
         //分割String类型为授权集合
-        return new User(username,user.getPassword(), AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return new User(username,passwordEncoder.encode("123456"), AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_admin"));
     }
 
     @Override
