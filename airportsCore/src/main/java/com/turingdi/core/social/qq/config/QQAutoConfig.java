@@ -6,7 +6,8 @@ package com.turingdi.core.social.qq.config;
 import com.turingdi.core.properties.SecurityProperties;
 import com.turingdi.core.properties.social.qq.QQProperties;
 import com.turingdi.core.social.qq.connect.QQConnectionFactory;
-import com.turingdi.core.social.view.AbstractConnectView;
+import com.turingdi.core.social.support.DefaultBindingProcessor;
+import com.turingdi.core.social.view.AbstractConnectBindingView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -48,8 +49,8 @@ public class QQAutoConfig extends SocialAutoConfigurerAdapter {
 	}
 
 	@Bean({"connect/qqConnect", "connect/qqConnected"})
-	@ConditionalOnMissingBean(name = "qqConnectedView")
-	public View qqConnectedView() {
-		return new AbstractConnectView();
+	@ConditionalOnMissingBean(name = "qqBindingView")
+	public View qqBindingView() {
+		return new AbstractConnectBindingView(new DefaultBindingProcessor());
 	}
 }

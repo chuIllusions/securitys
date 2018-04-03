@@ -8,6 +8,7 @@ import com.turingdi.core.properties.SecurityConstants;
 /**
  * session的配置
  *
+ * created by chuIllusions_tan 20180322
  */
 public class SessionProperties {
 	
